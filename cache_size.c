@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
+#include <string.h>
 
 #define NUM_ACCESSES (1 << 24)
 
@@ -55,6 +56,8 @@ double measure(int array_size, int stride) {
 
 int main() {
   double * results = malloc(sizeof(double) * SIZE_MAGNITUDE * STRIDES_MAGNITUDE);
+
+  memset((char *)measurement_array, 0, sizeof(measurement_array));
 
   printf("Showing avg time to access memory in nanoseconds. Rows are array size, columns are stride\n");
   printf("-------");
