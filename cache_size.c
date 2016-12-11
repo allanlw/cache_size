@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
+#include <string.h>
 
 #define NUM_ACCESSES (1 << 24)
 
@@ -15,7 +16,7 @@
 #define MIN_STRIDE 16
 #define STRIDES_MAGNITUDE 8
 
-static char measurement_array[MAX_ARRAY_SIZE];
+static volatile char measurement_array[MAX_ARRAY_SIZE];
 
 // https://stackoverflow.com/questions/3898840/converting-a-number-of-bytes-into-a-file-size-in-c
 void printsize(int size) {
@@ -55,6 +56,8 @@ double measure(int array_size, int stride) {
 
 int main() {
   double * results = malloc(sizeof(double) * SIZE_MAGNITUDE * STRIDES_MAGNITUDE);
+
+  memset((char *)measurement_array, 0, sizeof(measurement_array));
 
   printf("Showing avg time to access memory in nanoseconds. Rows are array size, columns are stride\n");
   printf("-------");
