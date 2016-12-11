@@ -15,7 +15,7 @@
 #define MIN_STRIDE 16
 #define STRIDES_MAGNITUDE 8
 
-static char measurement_array[MAX_ARRAY_SIZE];
+static volatile char measurement_array[MAX_ARRAY_SIZE];
 
 // https://stackoverflow.com/questions/3898840/converting-a-number-of-bytes-into-a-file-size-in-c
 void printsize(int size) {
